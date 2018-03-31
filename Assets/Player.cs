@@ -15,5 +15,6 @@ public class Player : MonoBehaviour {
 		//Adicionado pelo github
 		//Update Teste2
 		//Matheus Bostão
+		//teste melhor
 	}
 }
