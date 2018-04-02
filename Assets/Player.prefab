@@ -246,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1905831585930994
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +540,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -906,7 +906,7 @@ Animator:
   m_GameObject: {fileID: 1115615332325500}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 051cedd858cccdd48890208dbc4c4148, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1048,6 +1048,10 @@ MonoBehaviour:
   - {fileID: 114573336766607682}
   - {fileID: 95914679793471922}
   remoteLayerName: RemotePlayer
+  dontDrawLayerName: DontDraw
+  playerGraphics: {fileID: 1504554675126840}
+  playerUIPrefab: {fileID: 1083003419353908, guid: 2ddda0019a6dcbd42a9e686e9f67e166,
+    type: 2}
 --- !u!114 &114573336766607682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1099,12 +1103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b975634cf2998064cb1413666ee08440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowSpeed: 2.5
-  defaultspeed: 5
   speed: 5
   lookSensitivity: 3
-  ThrusterForce: 1100
-  jointmode: 1
+  thrusterForce: 1000
   jointSpring: 20
   jointMaxForce: 17.9
 --- !u!124 &124171645639749748

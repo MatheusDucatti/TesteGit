@@ -5,27 +5,22 @@
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float SlowSpeed = 2.5f;
-    [SerializeField]
-    private float defaultspeed = 5f;
+
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
     private float lookSensitivity = 3f;
 
     [SerializeField]
-    private float ThrusterForce = 1000f;
+    private float thrusterForce = 1000f;
 
-    [Header("Spring Settings:")]
-    [SerializeField]
-    private JointDriveMode jointmode = JointDriveMode.Position;
-    [SerializeField]
+    [Header("Spring settings:")]
+	[SerializeField]
     private float jointSpring = 20f;
     [SerializeField]
     private float jointMaxForce = 40f;
 
-    //Component caching
+    // Component caching
     private PlayerMotor motor;
     private ConfigurableJoint joint;
     private Animator animator;
@@ -51,13 +46,13 @@ public class PlayerController : MonoBehaviour
         // Final movement vector
         Vector3 _velocity = (_movHorizontal + _movVertical) * speed;
 
-        //Animate moviment
+        // Animate movement
         animator.SetFloat("ForwardVelocity", _zMov);
 
         //Apply movement
         motor.Move(_velocity);
 
-        //Calculate rotation as 3D vector (turning around)
+        //Calculate rotation as a 3D vector (turning around)
         float _yRot = Input.GetAxisRaw("Mouse X");
 
         Vector3 _rotation = new Vector3(0f, _yRot, 0f) * lookSensitivity;
@@ -65,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //Apply rotation
         motor.Rotate(_rotation);
 
-        //Calculate camera rotation as 3D vector (turning around)
+        //Calculate camera rotation as a 3D vector (turning around)
         float _xRot = Input.GetAxisRaw("Mouse Y");
 
         float _cameraRotationX = _xRot * lookSensitivity;
@@ -73,20 +68,19 @@ public class PlayerController : MonoBehaviour
         //Apply camera rotation
         motor.RotateCamera(_cameraRotationX);
 
+        // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-        //Apply Thruster Force
         if (Input.GetButton("Jump"))
         {
-            _thrusterForce = Vector3.up * ThrusterForce;
+            _thrusterForce = Vector3.up * thrusterForce;
             SetJointSettings(0f);
-            speed = SlowSpeed;
         }
         else
         {
             SetJointSettings(jointSpring);
-            speed = defaultspeed;
         }
 
+        // Apply the thruster force
         motor.ApplyThruster(_thrusterForce);
 
     }
@@ -95,9 +89,9 @@ public class PlayerController : MonoBehaviour
     {
         joint.yDrive = new JointDrive
         {
-            mode = jointmode,
-            positionSpring = jointSpring,
+            positionSpring = _jointSpring,
             maximumForce = jointMaxForce
         };
     }
+
 }
